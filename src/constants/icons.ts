@@ -1,0 +1,30 @@
+import type { IconName } from "@/types/ui";
+
+// SF Symbols on iOS, Material Symbols on Android, so each platform gets its native glyph.
+export const Icons = {
+    home: { ios: "house", android: "home" },
+    search: { ios: "magnifyingglass", android: "search" },
+    agents: { ios: "person.2", android: "group" },
+    realty: { ios: "building.2", android: "business" },
+    more: { ios: "ellipsis.circle", android: "menu" },
+    bed: { ios: "bed.double", android: "bed" },
+    bath: { ios: "bathtub", android: "bathtub" },
+    area: { ios: "ruler", android: "square_foot" },
+    lot: { ios: "mountain.2", android: "landscape" },
+    pin: { ios: "mappin.and.ellipse", android: "location_on" },
+    map: { ios: "map", android: "map" },
+    call: { ios: "phone", android: "call" },
+    sms: { ios: "message", android: "sms" },
+    chat: { ios: "bubble.left.and.bubble.right", android: "chat" },
+    mail: { ios: "envelope", android: "mail" },
+    share: { ios: "square.and.arrow.up", android: "share" },
+    verified: { ios: "checkmark.seal.fill", android: "verified" },
+    chevron: { ios: "chevron.right", android: "chevron_right" },
+    external: { ios: "arrow.up.right.square", android: "open_in_new" },
+    photos: { ios: "photo.on.rectangle", android: "photo_library" },
+    error: { ios: "exclamationmark.triangle", android: "error" },
+    star: { ios: "star.fill", android: "star" },
+    send: { ios: "paperplane", android: "send" },
+    info: { ios: "info.circle", android: "info" },
+    listings: { ios: "square.grid.2x2", android: "apps" },
+} as const satisfies Record<string, IconName>;

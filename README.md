@@ -1,56 +1,48 @@
-# Welcome to your Expo app 👋
+# Gintanao — mobile app
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+The React Native (Expo) version of the [Gintanao](../gintanao) portal: browse homes for sale,
+view a listing, browse PRC-verified agents and realties, and contact an agent. It has no
+backend of its own and reads everything from the same Laravel API as the web portal
+(`gintanao-backend`).
 
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Run it
 
 ```bash
-npm run reset-project
+npm install
+cp .env.example .env.local      # then set EXPO_PUBLIC_API_BASE_URL
+npx expo start                  # scan the QR code with Expo Go, or press a / i
 ```
 
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
+The app calls the API **from the phone**, so `localhost` is the wrong host: on a phone or
+emulator it means the device itself. Use your PC's LAN IP and start the backend on all
+interfaces:
 
-### Other setup steps
+```bash
+# in gintanao-backend
+php artisan serve --host=0.0.0.0 --port=8000
+```
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+Windows Firewall may need to allow inbound connections on port 8000.
 
-## Learn more
+## Scripts
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+npx expo start        # dev server
+npm run typecheck     # tsc --noEmit
+npx expo lint         # ESLint
+npm run format        # Prettier (4-space, 100 columns, same as the web repo)
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Screens
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+| Tab / route       | What it shows                                                        |
+| ----------------- | -------------------------------------------------------------------- |
+| Home              | Search, featured homes, newest listings                              |
+| Properties        | Search + status/type/sort filters, infinite scroll                   |
+| Agents            | The agent directory                                                  |
+| Realties          | The realty directory, searchable by name                             |
+| More              | Contact, agent sign-up links, legal pages (opened on the web)        |
+| `property/[slug]` | Gallery, facts, description, location, "Listed by" + contact buttons |
+| `agent/[slug]`    | Profile, contact buttons, listings                                   |
+| `realty/[slug]`   | Realty details, its agents and listings                              |
+| `contact`         | Enquiry form (modal)                                                 |

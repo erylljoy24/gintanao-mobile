@@ -1,65 +1,53 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://unistyl.es/), etc.
- */
-
-import '@/global.css';
-
-import { Platform } from 'react-native';
-
+// The web portal's design tokens (src/app/globals.css there), converted from oklch to hex.
 export const Colors = {
-  light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
-  },
-  dark: {
-    text: '#ffffff',
-    background: '#000000',
-    backgroundElement: '#212225',
-    backgroundSelected: '#2E3135',
-    textSecondary: '#B0B4BA',
-  },
+    light: {
+        text: "#2b2d42",
+        textMuted: "#737373",
+        background: "#ffffff",
+        card: "#ffffff",
+        muted: "#f5f5f5",
+        border: "#e5e5e5",
+        primary: "#4a90e2",
+        primaryDark: "#1f5fa2",
+        onPrimary: "#fafafa",
+        danger: "#e7000b",
+        success: "#16a34a",
+        overlay: "rgba(0, 0, 0, 0.55)",
+    },
+    dark: {
+        text: "#fafafa",
+        textMuted: "#a1a1a1",
+        background: "#0a0a0a",
+        card: "#171717",
+        muted: "#262626",
+        border: "#2e2e2e",
+        primary: "#4a90e2",
+        primaryDark: "#7fb2ee",
+        onPrimary: "#fafafa",
+        danger: "#ff6467",
+        success: "#4ade80",
+        overlay: "rgba(0, 0, 0, 0.55)",
+    },
 } as const;
 
-export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
+/** The hero band keeps the brand blue in both modes, since its text is always white. */
+export const BRAND_DARK = "#1f5fa2";
 
-export const Fonts = Platform.select({
-  ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
-    sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
-    serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
-    rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
-    mono: 'ui-monospace',
-  },
-  default: {
-    sans: 'normal',
-    serif: 'serif',
-    rounded: 'normal',
-    mono: 'monospace',
-  },
-  web: {
-    sans: 'var(--font-display)',
-    serif: 'var(--font-serif)',
-    rounded: 'var(--font-rounded)',
-    mono: 'var(--font-mono)',
-  },
-});
+export type ThemeColors = (typeof Colors)["light"] | (typeof Colors)["dark"];
+export type ThemeColor = keyof typeof Colors.light;
 
 export const Spacing = {
-  half: 2,
-  one: 4,
-  two: 8,
-  three: 16,
-  four: 24,
-  five: 32,
-  six: 64,
+    xs: 4,
+    sm: 8,
+    md: 12,
+    lg: 16,
+    xl: 24,
+    xxl: 32,
 } as const;
 
-export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
-export const MaxContentWidth = 800;
+export const Radius = {
+    sm: 6,
+    md: 10,
+    lg: 16,
+    full: 999,
+} as const;
